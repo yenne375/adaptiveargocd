@@ -27,7 +27,7 @@ node () {
             git config --global user.email 'jagadeesh0309@gmail.com'
             cd ./charts/argocd-chart && yq eval '.image.tag |= "testnow12"' -i values.yaml
 
-             cd ../../ && git commit -am 'Publish new version' && git push git@github.com:yenne375/argocdmanifest.git || echo 'no changes'
+             cd ../../ && pwd && user && git commit -am 'Publish new version' && git push git@github.com:yenne375/argocdmanifest.git || echo 'no changes'
               
               '''
           } 
