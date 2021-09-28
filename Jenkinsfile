@@ -22,8 +22,11 @@ node () {
           sh "git config --global user.email 'jagadeesh0309@gmail.com'"
 
          dir("argocdmanifest") {
-            sh "cd ./charts/argocd-chart && yq eval '.image.tag |= "test"' -i values.yaml"
-            sh "git commit -am 'Publish new version' && git push || echo 'no changes'"
+            sh '''
+            cd ./charts/argocd-chart && yq eval '.image.tag |= "test"' -i values.yaml
+             git commit -am 'Publish new version' && git push || echo 'no changes'
+              
+              '''
           } 
 
      
