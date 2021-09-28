@@ -1,7 +1,10 @@
 node {    
       
 
-    
+      stage('Clone repository') {               
+             
+            checkout scm    
+      }    
       stage('Build image') {         
             
             environment {
