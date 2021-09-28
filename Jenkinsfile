@@ -24,7 +24,8 @@ node () {
          dir("argocdmanifest") {
             sh '''
             cd ./charts/argocd-chart && yq eval '.image.tag |= "test"' -i values.yaml
-             git commit -am 'Publish new version' && git push || echo 'no changes'
+
+             cd ../../ && git commit -am 'Publish new version' && git push || echo 'no changes'
               
               '''
           } 
