@@ -18,7 +18,7 @@ node () {
      stage('Deploy argocd') {
       
           sh "rm -rf argocdmanifest"
-          sh "git clone git@github.com:yenne375/argocdmanifest.git"
+          sh "git clone https://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@github.com:yenne375/argocdmanifest.git"
           sh "git config --global user.email 'jagadeesh0309@gmail.com'"
 
          dir("argocdmanifest") {
