@@ -16,10 +16,8 @@ node () {
        }     
       
      stage('Deploy argocd') {
-      environment {
-        GIT_CREDS = credentials('git')
-      }
-        steps {
+      
+        
           sh "git clone https://github.com/yenne375/argocdmanifest.git"
           sh "git config --global user.email 'jagadeesh0309@gmail.com'"
 
@@ -28,7 +26,7 @@ node () {
             sh "git commit -am 'Publish new version' && git push || echo 'no changes'"
           } 
 
-     }
+     
 
 
    } 
