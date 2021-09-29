@@ -27,19 +27,16 @@ pipeline {
              steps {
                 
                script {
-                   docker.withRegistry( '', registryCredential ) {
-                   dockerImage.push()
-          }
-        }
-              docker.withRegistry( '', registryCredential ) {
+                   dockerImage = docker.build registry + ":$BUILD_NUMBER"
+              
+                 docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
           }
+        }
+              
+          
        
-                sh "docker build -t yenne1993/argocd-demo:\$(git rev-parse --short HEAD) ."
-                sh "docker login --username yenne1993 --password weLcome@#123 && docker push yenne1993/argocd-demo:\$(git rev-parse --short HEAD)" 
-               script { 
-                    prevcom = '$(git rev-parse --short HEAD)'
-                 }  
+                  
          
             } 
 
