@@ -58,8 +58,8 @@ pipeline {
             echo $com
             cd ./charts/argocd-chart 
             
-            echo '$prevcom'            
-            yq eval '.image.tag |= "'${BUILD_NUMBE}'"'  values.yaml | tee test403.yaml
+            echo '$BUILD_NUMBER'            
+            yq eval '.image.tag |= "'${BUILD_NUMBER}'"'  values.yaml | tee test403.yaml
             
             cat test403.yaml > values.yaml
             
