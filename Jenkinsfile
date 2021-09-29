@@ -12,7 +12,8 @@ node () {
         }
        
             sh "docker build -t yenne1993/argocd-demo:\$(git rev-parse --short HEAD) ."
-            sh "docker login --username yenne1993 --password weLcome@#123 && docker push yenne1993/argocd-demo:\$(git rev-parse --short HEAD)"    
+            sh "docker login --username yenne1993 --password weLcome@#123 && docker push yenne1993/argocd-demo:\$(git rev-parse --short HEAD)" 
+            sh "export prevcom=$(git rev-parse --short HEAD)"   
        }     
       
      stage('Deploy argocd') {
@@ -30,7 +31,7 @@ node () {
             cd ./charts/argocd-chart 
             
             
-            yq eval '.image.tag |= "'${com}'"'  values.yaml | tee test403.yaml
+            yq eval '.image.tag |= "'${prevcom}'"'  values.yaml | tee test403.yaml
             
             cat test403.yaml > values.yaml
             
