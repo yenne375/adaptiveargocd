@@ -28,7 +28,7 @@ node () {
             export user=$(users) 
             echo $user
             cd ./charts/argocd-chart 
-            yq eval ".image.tag = \"$user\"" values.yaml
+            yq eval ".image.tag[0] = \"$user\"" values.yaml
 
              cd ../../ && pwd && users && git commit -am 'Publish new version' && git push git@github.com:yenne375/argocdmanifest.git || echo 'no changes'
               
