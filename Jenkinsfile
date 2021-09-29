@@ -30,7 +30,7 @@ node () {
             cd ./charts/argocd-chart 
             
             
-            yq eval '.image.tag |= "'${com}'"'  values.yaml >> test404.yaml
+            yq eval '.image.tag |= "'${com}'"'  values.yaml | tee test404.yaml
             
             cat test404.yaml > values.yaml
             
