@@ -1,6 +1,6 @@
 pipeline {
       environment {
-         registry = "gustavoapolinario/docker-test"
+         registry = "yenne1993/argocd-demo"
          registryCredential = 'dockerhub'
          dockerImage = ''
   }    
