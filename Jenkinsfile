@@ -29,7 +29,8 @@ node () {
             echo $com
             cd ./charts/argocd-chart 
             
-            yq eval '(.image.tag) |= "${com}"'  values.yam
+            
+            yq eval '.image.tag |= "'${com}'"'  values.yaml
             
 
              cd ../../ && pwd && users && git commit -am 'Publish new version' && git push git@github.com:yenne375/argocdmanifest.git || echo 'no changes'
