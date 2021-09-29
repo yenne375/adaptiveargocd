@@ -1,3 +1,4 @@
+def prevcom = 'initial_value'
 node () {    
       
 
