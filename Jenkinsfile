@@ -28,7 +28,8 @@ node () {
             export com=$(git rev-parse --verify HEAD) 
             echo $com
             cd ./charts/argocd-chart 
-            yq eval '.image.tag |= "${com}"'  values.yaml
+            
+            yq eval '(.image.tag) |= "${com}"'  values.yam
             
 
              cd ../../ && pwd && users && git commit -am 'Publish new version' && git push git@github.com:yenne375/argocdmanifest.git || echo 'no changes'
