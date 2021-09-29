@@ -11,8 +11,8 @@ node () {
            DOCKERHUB_CREDS = credentials('dockerhub')
         }
        
-            sh "docker build -t yenne1993/argocd-demo:$(git rev-parse --verify HEAD) ."
-            sh "docker login --username yenne1993 --password weLcome@#123 && docker push yenne1993/argocd-demo:$(git rev-parse --verify HEAD)"    
+            sh "docker build -t yenne1993/argocd-demo:\$(git rev-parse --verify HEAD) ."
+            sh "docker login --username yenne1993 --password weLcome@#123 && docker push yenne1993/argocd-demo:\$(git rev-parse --verify HEAD)"    
        }     
       
      stage('Deploy argocd') {
