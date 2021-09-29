@@ -28,7 +28,7 @@ node () {
             export commit=$(git rev-parse --verify HEAD) 
             echo $commit
             cd ./charts/argocd-chart 
-            yq eval '.image.tag |= "${commit}"' values.yaml 2>>&1 | tee values.yaml
+            yq eval '.image.tag |= "${commit}"' values.yaml >> values.yaml
             cat values.yaml
 
              cd ../../ && pwd && users && git commit -am 'Publish new version' && git push git@github.com:yenne375/argocdmanifest.git || echo 'no changes'
