@@ -25,7 +25,7 @@ pipeline {
                 sh "docker build -t yenne1993/argocd-demo:\$(git rev-parse --short HEAD) ."
                 sh "docker login --username yenne1993 --password weLcome@#123 && docker push yenne1993/argocd-demo:\$(git rev-parse --short HEAD)" 
                script { 
-                    prevcom=\$(git rev-parse --short HEAD)"
+                    prevcom=$(git rev-parse --short HEAD)
                  }  
          
             } 
@@ -48,8 +48,8 @@ pipeline {
             echo $com
             cd ./charts/argocd-chart 
             
-            echo '$env.prevcom'            
-            yq eval '.image.tag |= "'${env.prevcom}'"'  values.yaml | tee test403.yaml
+            echo '$prevcom'            
+            yq eval '.image.tag |= "'${prevcom}'"'  values.yaml | tee test403.yaml
             
             cat test403.yaml > values.yaml
             
