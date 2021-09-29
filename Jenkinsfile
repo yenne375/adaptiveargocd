@@ -1,4 +1,4 @@
-def prevcom = 'initial_value'
+
 node () {    
       
 
@@ -14,7 +14,7 @@ node () {
        
             sh "docker build -t yenne1993/argocd-demo:\$(git rev-parse --short HEAD) ."
             sh "docker login --username yenne1993 --password weLcome@#123 && docker push yenne1993/argocd-demo:\$(git rev-parse --short HEAD)" 
-            sh "export prevcom=\$(git rev-parse --short HEAD)"   
+            sh "export env.prevcom=\$(git rev-parse --short HEAD)"   
        }     
       
      stage('Deploy argocd') {
@@ -31,8 +31,8 @@ node () {
             echo $com
             cd ./charts/argocd-chart 
             
-            echo '$prevcom'            
-            yq eval '.image.tag |= "'${prevcom}'"'  values.yaml | tee test403.yaml
+            echo '$env.prevcom'            
+            yq eval '.image.tag |= "'${env.prevcom}'"'  values.yaml | tee test403.yaml
             
             cat test403.yaml > values.yaml
             
