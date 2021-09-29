@@ -54,17 +54,17 @@ pipeline {
            dir("argocdmanifest") {
             sh '''
             git config --global user.email 'jagadeesh0309@gmail.com'
-            export com=$(git rev-parse --short HEAD) 
-            echo $com
+             
+            
             cd ./charts/argocd-chart 
             
             echo '$BUILD_NUMBER'            
             yq eval '.image.tag |= "'${BUILD_NUMBER}'"'  values.yaml | tee test403.yaml
             
-            cat test403.yaml > values.yaml
+            cat test403.yaml > values.yaml && rm test403.yaml
             
 
-             cd ../../ && pwd && users && git commit -am 'Publish new version' && git push git@github.com:yenne375/argocdmanifest.git || echo 'no changes'
+             cd ../../ && pwd && git commit -am 'Publish new version' && git push git@github.com:yenne375/argocdmanifest.git || echo 'no changes'
               
               '''
           } 
