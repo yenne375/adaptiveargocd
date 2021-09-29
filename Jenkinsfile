@@ -25,7 +25,7 @@ node () {
          dir("argocdmanifest") {
             sh '''
             git config --global user.email 'jagadeesh0309@gmail.com'
-            export committag=$(git rev-parse --verify HEAD) 
+            export committag=$(date) 
             echo $committag
             cd ./charts/argocd-chart 
             yq eval ".image.tag = \'$committag\'" values.yaml
