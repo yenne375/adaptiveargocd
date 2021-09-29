@@ -11,8 +11,8 @@ node () {
            DOCKERHUB_CREDS = credentials('dockerhub')
         }
        
-            sh "docker build -t yenne1993/argocd-demo:\$(git rev-parse --verify HEAD) ."
-            sh "docker login --username yenne1993 --password weLcome@#123 && docker push yenne1993/argocd-demo:\$(git rev-parse --verify HEAD)"    
+            sh "docker build -t yenne1993/argocd-demo:\$(git rev-parse --short HEAD) ."
+            sh "docker login --username yenne1993 --password weLcome@#123 && docker push yenne1993/argocd-demo:\$(git rev-parse --short HEAD)"    
        }     
       
      stage('Deploy argocd') {
@@ -25,7 +25,7 @@ node () {
          dir("argocdmanifest") {
             sh '''
             git config --global user.email 'jagadeesh0309@gmail.com'
-            export com=$(git rev-parse --verify HEAD) 
+            export com=$(git rev-parse --short HEAD) 
             echo $com
             cd ./charts/argocd-chart 
             
