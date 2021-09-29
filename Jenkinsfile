@@ -25,10 +25,10 @@ node () {
          dir("argocdmanifest") {
             sh '''
             git config --global user.email 'jagadeesh0309@gmail.com'
-            export user=$(users) 
-            echo $user
+            export commit=$(git rev-parse --verify HEAD) 
+            echo $commit
             cd ./charts/argocd-chart 
-            yq eval ".image.tag |= \"$user\"" -i values.yaml
+            yq eval ".image.tag = \"$commit\"" values.yaml >> values.yaml
 
              cd ../../ && pwd && users && git commit -am 'Publish new version' && git push git@github.com:yenne375/argocdmanifest.git || echo 'no changes'
               
