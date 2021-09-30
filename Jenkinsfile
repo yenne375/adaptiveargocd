@@ -1,6 +1,6 @@
 pipeline {
       environment {
-         registry = "yenne1993/argocd-demo"
+         registry = "yenne1993/node-app"
          registryCredential = 'dockerhub'
          dockerImage = ''
   }    
@@ -81,10 +81,3 @@ pipeline {
 
 
 }
-
-
-
-
- 
-       
-     
